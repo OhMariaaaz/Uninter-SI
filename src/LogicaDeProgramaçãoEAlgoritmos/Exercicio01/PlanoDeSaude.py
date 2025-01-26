@@ -30,7 +30,6 @@ Se o valor_base informado for 100.00 e a idade for 45 anos
 (240% segundo a tabela acima)
 
 #################################################### ELABORE UM PROGRAMA QUE:
-
 ⦁	Deve-se implementar o print com o seu nome completo (somente print, 
 não usar input aqui). Por exemplo: print(“Sistema desenvolvido por Bruno 
 Kostiuk”) [EXIGÊNCIA DE CÓDIGO 1 de 6];

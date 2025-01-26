@@ -1,4 +1,5 @@
 '''
+########################################################### PIZZARIA SABORES:
 Você e sua equipe de programadores foram contratados para desenvolver um app 
 de vendas para uma Pizzaria que vende sabores de Pizzas Doces e Pizzas 
 Salgadas. Você ficou com a parte de desenvolver a interface do cliente para 
@@ -14,7 +15,7 @@ A Loja possui seguinte relação:
 ⦁	Tamanho G: Pizza Salgada (PS) custa 60 reais e a Pizza Doce (PD) custa 
 66 reais;
 
-Elabore um programa em Python que: 
+#################################################### ELABORE UM PROGRAMA QUE:
 ⦁	Deve-se implementar o print com o seu nome completo (somente print, não 
 usar input aqui). 
 
@@ -31,7 +32,7 @@ Tente novamente" se o usuário entra com valor diferente de PS e PD [EXIGÊNCIA
 EXIGÊNCIA DE CÓDIGO 3 de 8];
 
 ⦁	Deve-se implementar if, elif e/ou else, utilizando o modelo aninhado (aula
- 3 – Tema 4) com cada uma das combinações de sabor e tamanho [EXIGÊNCIA DE 
+ 3 - Tema 4) com cada uma das combinações de sabor e tamanho [EXIGÊNCIA DE 
  CÓDIGO 4 de 8];
 
 ⦁	Deve-se implementar um acumulador para somar os valores dos pedidos (valor
@@ -77,8 +78,14 @@ print("-|    M    |       R$ 45.00     |    R$ 48.00    |-")
 print("-|    G    |       R$ 60.00     |    R$ 66.00    |-")
 print("---------------------------------------------------")
 
-valores_pizzas = {'PSP':30, 'PSM':45, 'PSG':60,
-           'PDP':34, 'PDM':48, 'PDG':66}
+valores_pizzas = {
+    'PSP': [30, 'Pizza Salgada Pequena'], 
+    'PSM': [45, 'Pizza Salgada Média'], 
+    'PSG': [60, 'Pizza Salgada Grande'],
+    'PDP': [34, 'Pizza Doce Pequena'],
+    'PDM': [48, 'Pizza Doce Média'],
+    'PDG': [66, 'Pizza Doce Grande']
+    }
 
 valor_total = 0
 
@@ -100,7 +107,7 @@ while adicionar_pedido is True:
         print("Tamanho inválido. Tente novamente.")
         continue
     
-    cod_pizza = (sabor_pizza + tamanho_pizza).replace(" ", "")
+    cod_pizza = (sabor_pizza + tamanho_pizza)
     valor_total = valor_total + valores_pizzas[cod_pizza]
 
     print("---------------------------------------------------\n")
