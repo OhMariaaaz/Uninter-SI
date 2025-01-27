@@ -84,8 +84,10 @@ madeira, quantidade de toras e transporte válidos [EXIGÊNCIA DE SAÍDA DE
 CONSOLE 4 de 4];
 
 '''
+# [EXIGÊNCIA DE CÓDIGO 1 de 6] Apresentar em print nome completo.
 print("\n---Sistema realizado por Maria Eduarda Gomes! <3---\n")
 
+# Função simples apenas para exibir uma linha de separação.
 def imprime_linha():
     print("---------------------------------------------------")
 
