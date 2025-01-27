@@ -61,19 +61,20 @@ tamanho [EXIGÊNCIA DE SAÍDA DE CONSOLE 3 de 4];
 ⦁	Deve-se apresentar na saída de console um pedido com duas opções sabores 
 diferentes e com tamanhos diferentes [EXIGÊNCIA DE SAÍDA DE CONSOLE 4 de 4];  
 '''
+# [EXIGÊNCIA DE CÓDIGO 8 de 8] Código comentadinho :)
 # [EXIGÊNCIA DE CÓDIGO 1 de 8] Apresentar em print nome completo.
 print("\n---Sistema realizado por Maria Eduarda Gomes! <3---\n")
 
-# Função simples apenas para exibir uma linha de separação.
+# Função para exibir uma linha de separação.
 def imprime_linha():
     print("---------------------------------------------------")
 
-# Print inicial para dar abertura ao programa.
+# Print inicial
 imprime_linha()
 print("--------------BEM VINDO AO GOMES PIZZAS------------")
 imprime_linha()
 
-# Exibir o cardápio, com os valores e as opções.
+# Exibir o cardápio
 def exibir_menu():
     print("----------------------CARDÁPIO---------------------")
     imprime_linha()
@@ -83,90 +84,72 @@ def exibir_menu():
     print("-|    G    |       R$ 60.00     |    R$ 66.00    |-")
     imprime_linha()
 
-# Exibir o valor final a ser pago pelo cliente.
-def exibir_valor_final():
+# Exibir o valor final
+def exibir_valor_final(valor_total):
     imprime_linha()
     print("------------- DADOS FINAIS DO PEDIDO: -------------")
     imprime_linha()
     print(f"Valor final do pedido: R$ {valor_total:.2f}")
     imprime_linha()
 
-
-# Criando um dicionário com os valores já pré setados de cada uma das pizzas. 
-    
-
-# Essa é a váriavel onde vou armazenar o valor total a ser pago pelo cliente.
+# Variável do valor total
 valor_total = 0
 
-# [EXIGÊNCIA DE CÓDIGO 7 de 8] usando while, break e continue
-# O laço vai repetir o inserimento de pizzas ao pedido enquanto o cliente não
-# finalizar o pedido ou não realizar corretamente o pedido.
+# [EXIGÊNCIA DE CÓDIGO 7 de 8] Laço para inserir pizzas ao pedido
 while True:
     exibir_menu()
 
-    # [EXIGÊNCIA DE CÓDIGO 2 de 8] Solicitando o sabor da pizza e repetindo o
-    # laço caso o valor digitado pelo usuário esteja incorreto.
+    # [EXIGÊNCIA DE CÓDIGO 2 de 8] Solicitar sabor da pizza
     sabor_pizza = input("\nDigite o código do sabor de pizza desejada " +
                         "(Pizza Salgada - PS | Pizza Doce - PD): ").upper()
     
-    # Caso o usuário digite um valor incorreto, o laço será repetido desde o
-    # começo novamente. 
+    # Laço repetido se valor incorreto
     if sabor_pizza not in ("PD", "PS"):
         print("Sabor inválido. Tente novamente.")
         continue
     
-    # [EXIGÊNCIA DE CÓDIGO 3 de 8] Solicitando o tamanho da pizza e repetindo o
-    # laço caso o valor digitado pelo usuário esteja incorreto.
+    # [EXIGÊNCIA DE CÓDIGO 3 de 8] Solicitar tamanho da pizza
     tamanho_pizza = input("\nDigite o código do tamanho pizza desejada " +
                           "(Pequena - P | Média - M | Grande - G): ").upper()
     
-    # Caso o usuário digite um valor incorreto, o laço será repetido desde o
-    # começo novamente. 
+    # Laço repetido se valor incorreto
     if tamanho_pizza not in ("P", "M", "G"):
         print("Tamanho inválido. Tente novamente.")
         continue
 
-    # [EXIGÊNCIA DE CÓDIGO 4 de 8] Utilizando If, Elif e Else para definir as
-    # informações da pizza escolhida.
-    if sabor_pizza is "PS" and tamanho_pizza is "P":
+    # [EXIGÊNCIA DE CÓDIGO 4 de 8] Usando If, Elif e Else
+    if sabor_pizza == "PS" and tamanho_pizza == "P":
         valor_pizza = 30
-        descicao_pizza = "Pizza Salgada Pequena" 
-    elif sabor_pizza is "PS" and tamanho_pizza is "M":
+        descricao_pizza = "Pizza Salgada Pequena" 
+    elif sabor_pizza == "PS" and tamanho_pizza == "M":
         valor_pizza = 45
-        descicao_pizza = "Pizza Salgada Média" 
-    elif sabor_pizza is "PS" and tamanho_pizza is "G":
+        descricao_pizza = "Pizza Salgada Média" 
+    elif sabor_pizza == "PS" and tamanho_pizza == "G":
         valor_pizza = 60
-        descicao_pizza = "Pizza Salgada Grande"
-    elif sabor_pizza is "PD" and tamanho_pizza is "P":
+        descricao_pizza = "Pizza Salgada Grande"
+    elif sabor_pizza == "PD" and tamanho_pizza == "P":
         valor_pizza = 34
-        descicao_pizza = "Pizza Doce Pequena"
-    elif sabor_pizza is "PD" and tamanho_pizza is "M":
+        descricao_pizza = "Pizza Doce Pequena"
+    elif sabor_pizza == "PD" and tamanho_pizza == "M":
         valor_pizza = 48
-        descicao_pizza = "Pizza Doce Média"
+        descricao_pizza = "Pizza Doce Média"
     else:
         valor_pizza = 66
-        descicao_pizza = "Pizza Doce Grande"
+        descricao_pizza = "Pizza Doce Grande"
 
-    # [EXIGÊNCIA DE CÓDIGO 5 de 8] Incrementando o valor total do pedido do 
-    # cliente.
-    valor_total =+ valor_pizza
+    # [EXIGÊNCIA DE CÓDIGO 5 de 8] Incrementar valor total
+    valor_total += valor_pizza
 
     imprime_linha()
-    # Aqui eu exibo um preview da pizza que o cliente escolheu e também o 
-    # valor atual do pedido.
-    print(f"Você escolheu a pizza: {descicao_pizza}")
+    # Preview da pizza escolhida e valor atual do pedido
+    print(f"Você escolheu a pizza: {descricao_pizza}")
     print(f"Valor da pizza: R$ {valor_pizza:.2f}")
     print(f"Valor total do pedido: R$ {valor_total:.2f}")
     imprime_linha()
 
-    # [EXIGÊNCIA DE CÓDIGO 6 de 8] Se o cliente quiser finalizar o pedido, o
-    # laço terminará com um comando "break", caso contrário o código será 
-    # repetido novamente e o valor_total será incrementado com o valor de uma 
-    # nova pizza.
+    # [EXIGÊNCIA DE CÓDIGO 6 de 8] Finalizar pedido ou continuar
     if input("Deseja adicionar mais pizzas ao pedido? (Pressione 'S' - Sim " +
              "| Pressione qualquer tecla - Não): ").upper() != "S":
         break
 
-exibir_valor_final()
-
-# [EXIGÊNCIA DE CÓDIGO 8 de 8] Código comentadinho :)
+exibir_valor_final(valor_total)

@@ -46,7 +46,8 @@ que:[EXIGÊNCIA DE CÓDIGO 2 de 7];
     return);
     ⦁	Repete a pergunta do item B.a se digitar uma opção diferente de:
     PIN/PER/MOG/IPE/IMB;
-    ⦁	Deve-se implementar a função qtd_toras() que não recebe parâmetros e
+
+⦁	Deve-se implementar a função qtd_toras() que não recebe parâmetros e
     que: [EXIGÊNCIA DE CÓDIGO 3 de 7];
     ⦁	Pergunta a quantidade de toras;
     ⦁	Retorna (use return) a quantidade de toras E o valor do desconto (os
@@ -84,14 +85,15 @@ madeira, quantidade de toras e transporte válidos [EXIGÊNCIA DE SAÍDA DE
 CONSOLE 4 de 4];
 
 '''
-# [EXIGÊNCIA DE CÓDIGO 1 de 6] Apresentar em print nome completo.
+# [EXIGÊNCIA DE CÓDIGO 7 de 7] Código comentadinho o/
+# [EXIGÊNCIA DE CÓDIGO 1 de 7] Apresentar em print nome completo.
 print("\n---Sistema realizado por Maria Eduarda Gomes! <3---\n")
 
-# Função simples apenas para exibir uma linha de separação.
+# Função para exibir uma linha de separação.
 def imprime_linha():
     print("---------------------------------------------------")
 
-# Frescura
+# Print inicial.
 imprime_linha()
 print("-------------BEM VINDO AO GOMES TORA&PAU-----------")
 imprime_linha()
@@ -105,6 +107,8 @@ print("-----------|  IPE   |  Tora de Ipê    |------------")
 print("-----------|  IMB   |  Tora de Imbuia |------------")
 imprime_linha()
 
+# [EXIGÊNCIA DE CÓDIGO 6 de 7] Tratamento de erro.
+# [EXIGÊNCIA DE CÓDIGO 2 de 7] Função para escolher tipo de madeira.
 def escolha_tipo_madeira():
     tipos_madeiras = {
         'PIN': {'Valor Base da Madeira': 150.40, 
@@ -118,7 +122,7 @@ def escolha_tipo_madeira():
         'IMB': {'Valor Base da Madeira': 220.70, 
                 'Descrição do Tipo': 'Tora de Imbuia'}
     }
-
+    
     while True:
         imprime_linha()
         try:
@@ -132,6 +136,8 @@ def escolha_tipo_madeira():
         except ValueError:
             print("Escolha inválida! Tente novamente.")
 
+# [EXIGÊNCIA DE CÓDIGO 6 de 7] Tratamento de erro.
+# [EXIGÊNCIA DE CÓDIGO 3 de 7] Função para escolher quantidade de toras.
 def qtde_toras():
     LIMITE_QUANTIDADE = 2000
     DESCONTOS = {
@@ -165,6 +171,8 @@ def qtde_toras():
         except ValueError:
             print("Escolha inválida! Tente novamente.")
 
+# [EXIGÊNCIA DE CÓDIGO 6 de 7] Tratamento de erro.
+# [EXIGÊNCIA DE CÓDIGO 4 de 7] Função para escolher transporte.
 def transporte():
     meio_transporte = {
         1: {'Meio de Transporte': 'Transporte Rodoviário', 
@@ -172,9 +180,9 @@ def transporte():
         2: {'Meio de Transporte': 'Transporte Ferroviário', 
             'Valor Adicional de Transporte': 2000}, 
         3: {'Meio de Transporte': 'Transporte Hidroviário', 
-            'Valor Adicional de Transporte': 3000},
+            'Valor Adicional de Transporte': 2500},
     }
-
+    
     while True:
         imprime_linha()
         try:
@@ -182,7 +190,7 @@ def transporte():
                 "Qual será a forma de transporte?\n" +
                 "1 - Transporte Rodoviário  - R$ 1000.00\n" +
                 "2 - Transporte Ferroviário - R$ 2000.00\n" +
-                "3 - Transporte Hidroviário - R$ 3000.00\n"
+                "3 - Transporte Hidroviário - R$ 2500.00\n"
             ))
             imprime_linha()
             if transporte_escolhido in meio_transporte:
@@ -192,21 +200,28 @@ def transporte():
         except ValueError:
             print("Escolha inválida! Tente novamente.")
 
+# Inicialização do pedido.
 pedido = {}
 
+# Obtendo o tipo de madeira e suas informações.
 for chave, item in escolha_tipo_madeira().items():
     pedido[chave] = item
 
+# Obtendo a quantidade de toras e o desconto aplicável.
 for chave, item in qtde_toras().items():
     pedido[chave] = item
 
+# Obtendo o meio de transporte e seu valor adicional.
 for chave, item in transporte().items():
     pedido[chave] = item
 
-pedido['total'] = (
+# [EXIGÊNCIA DE CÓDIGO 5 de 7] 
+# Calcula o valor total do pedido.
+pedido['Total'] = (
     (pedido['Valor Base da Madeira'] * pedido['Quantidade de Toras'])
-    *(1-pedido['Desconto'])) + pedido['Valor Adicional de Transporte']
+    * (1 - pedido['Desconto'])) + pedido['Valor Adicional de Transporte']
 
+# Exibindo os dados finais do pedido.
 imprime_linha()
 print("------------- DADOS FINAIS DO PEDIDO: -------------")
 imprime_linha()

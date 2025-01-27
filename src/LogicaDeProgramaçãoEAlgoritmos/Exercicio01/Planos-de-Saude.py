@@ -55,36 +55,30 @@ cliente [EXIGÊNCIA DE CÓDIGO 2 de 6];
 uma idade maior ou igual a 29 anos, apresentando na saída de console o 
 valor_mensal do plano [EXIGÊNCIA DE SAÍDA DE CONSOLE 2 de 2];  
 '''
-# [EXIGÊNCIA DE CÓDIGO 1 de 6] Apresentar em print nome completo.
+# [EXIGÊNCIA DE CÓDIGO 6 de 6] Comentários relevantes
+# [EXIGÊNCIA DE CÓDIGO 1 de 6] Nome completo.
 print("\n---Sistema realizado por Maria Eduarda Gomes! <3---\n")
 
-# Função simples apenas para exibir uma linha de separação.
+# Função para exibir uma linha de separação.
 def imprime_linha():
     print("---------------------------------------------------")
 
-# Print inicial para dar abertura ao programa.
+# Print inicial
 imprime_linha()
 print("--------BEM VINDO AO GOMES HEALTH AND CARE---------")
 imprime_linha()
 
-# Criando a váriavel de controle "erro", caso o usuário resolva inserir algum
-# tipo de dado que não seja condizente com o esperado.
+# Variável de controle de erro
 erro = False
 
-# Evitando erros de tipo de dado com Try e Except.
+# Entrada de dados com tratamento de erro
 try:
-
-    # [EXIGÊNCIA DE CÓDIGO 2 de 6] Realizando input de Idade e de Valor Base.
-    # Recebendo a idade do cliente.
+    # [EXIGÊNCIA DE CÓDIGO 2 de 6] Input da idade e valor base
     idade_cliente = int(input("Para começar, informe a idade do cliente: "))
-    # Recebendo o valor base da mensalidade do plano de saúde.
     valor_base = float(input("Informe o valor base do plano de saúde: R$"))
 
-    # [EXIGÊNCIA DE CÓDIGO 3 de 6] Verificando a faixa etária do cliente.
-    # [EXIGÊNCIA DE CÓDIGO 5 de 6] Usando IF, ELIF e ELSE.
-    # Verificando em qual faixa etária o cliente se encaixa.
-    # O valor vai ser incrementado conforme a faixa etária que o cliente se
-    # encaixar.
+    # [EXIGÊNCIA DE CÓDIGO 3 de 6] Verificação da faixa etária
+    # [EXIGÊNCIA DE CÓDIGO 5 de 6] Usando IF, ELIF e ELSE
     if idade_cliente >= 0 and idade_cliente < 19:
         print("Faixa etária de 0 a 18 anos.")
         valor_faixa_etaria = 1.00
@@ -101,11 +95,9 @@ try:
         print("Faixa etária de 49 a 58 anos.")
         valor_faixa_etaria = 3.50
     elif idade_cliente >= 59:
-        print("Faixa etária acima de 59 anos")
+        print("Faixa etária acima de 59 anos.")
         valor_faixa_etaria = 6.00
     else:
-        # Aqui eu verifico se o usuário não inseriu um valor incorreto, como uma
-        # idade negativa, por exemplo.
         print("Erro de valor. Por favor, tente novamente.")
         erro = True
 
@@ -116,10 +108,6 @@ except ValueError:
 if not erro:
     imprime_linha()
 
-    # [EXIGÊNCIA DE CÓDIGO 4 de 6] O valor mensal está sendo implementado.
-    # O valor da mensalidade é multiplicado conforme a taxa recebida pela 
-    # faixa etária, e então é exibido na tela para o usuário final.
+    # [EXIGÊNCIA DE CÓDIGO 4 de 6] Implementando o valor mensal
     valor_mensal = valor_base * valor_faixa_etaria
     print(f"O valor mensal do plano é de: R${valor_mensal:.2f}")
-
-# [EXIGÊNCIA DE CÓDIGO 6 de 6] Código comentadinho.

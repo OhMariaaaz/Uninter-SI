@@ -116,7 +116,8 @@ seguida de uma consulta de todos os contatos, provando que o contato foi
 removido [EXIGÊNCIA DE SAÍDA DE CONSOLE 6 de 6];
 
 '''
-# [EXIGÊNCIA DE CÓDIGO 1 de 6] Apresentar em print nome completo.
+# [EXIGÊNCIA DE CÓDIGO 8 de 8] Código comentadinho :)
+# [EXIGÊNCIA DE CÓDIGO 1 de 8] Apresentar em print nome completo.
 print("\n---Sistema realizado por Maria Eduarda Gomes! <3---\n")
 
 import copy
@@ -125,18 +126,7 @@ import copy
 def imprime_linha():
     print("---------------------------------------------------")
 
-def print_menu_principal():
-    imprime_linha()
-    print("-------------BEM VINDO AO GOMES E-COMMERCE-----------")
-    imprime_linha()
-    print("----------------- MENU DE CADASTROS -----------------")
-    imprime_linha()
-    print("--------- |   1 - Cadastrar Contato       | ---------")
-    print("--------- |   2 - Consultar Contatos      | ---------")
-    print("--------- |   3 - Remover Contato         | ---------")
-    print("--------- |   4 - Encerrar Programa       | ---------")
-    imprime_linha()
-
+# Função que exibe o menu de opções de consulta.
 def print_menu_consultar():
     imprime_linha()
     print("---------------------------------------------------")
@@ -148,96 +138,158 @@ def print_menu_consultar():
     print("--------- |    4 - Retornar ao menu       | ---------")
     imprime_linha()
 
+# [EXIGÊNCIA DE CÓDIGO 3 de 8] Função cadastrar contatos. Solicita o nome,
+# a atividade e o telefone de cada um dos contatos.
 def cadastrar_contato(id, lista_contatos):
     try:
+        # Solicitando as informações do contato.
         nome_contato = input("Digite o nome do contato: ")
         atividade = input("Digite a atividade do contato: ")
         telefone_contato = input("Digite o telefone do contato: ")
 
+        # Criando um novo dicionário com os dados do contato.
         novo_contato = {'id': id,
                         'Nome': nome_contato,
                         'Atividade': atividade,
                         'Telefone': telefone_contato}
 
+        # Adicionando o dicionário à lista de contatos.
         lista_contatos.append(copy.deepcopy(novo_contato))
         
+        # Incrementando o ID global.
         id += 1
         print("Contato cadastrado com sucesso!")
         return id
     except Exception as e:
+        # Tratando possíveis erros.
         print(f"Erro de dado ({e}). Por favor, tente novamente")
 
+# [EXIGÊNCIA DE CÓDIGO 4 de 8] Função para consultar contatos.
 def consultar_contatos():
     while True:
-        print_menu_consultar()
-        escolha = int(input("Escolha uma opção: "))
+        try:
+            print_menu_consultar()
+            escolha = int(input("Escolha uma opção: "))
 
-        if escolha == 1:
-            for registro in lista_contatos:
-                for chave, valor in registro.items():
-                    print(f"{chave}: {valor}")
-            return
-        elif escolha == 2:
-            procura_id = int(input("Digite o n° do ID que você deseja procurar: "))
-            contato = next((c for c in lista_contatos if c['id'] == procura_id), None)
-            if contato:
-                print(contato)
+            if escolha == 1:
+                # Consultando e exibindo todos os contatos.
+                for registro in lista_contatos:
+                    for chave, valor in registro.items():
+                        print(f"{chave}: {valor}")
+                return
+            elif escolha == 2:
+                # Consultando contato por ID fornecido no Input.
+                procura_id = int(input("Digite o n° do ID que você deseja " + 
+                                       "procurar: "))
+                resultado_pesquisa = next((contato 
+                                           for contato in lista_contatos 
+                                           if contato['id'] == procura_id), 
+                                           None)
+                if resultado_pesquisa:
+                    print(resultado_pesquisa)
+                else:
+                    print("Contato não encontrado.")
+            elif escolha == 3:
+                # Consultando contato por atividade que exerce.
+                atividade_procurada = input("Digite a atividade: ")
+                resultado_pesquisa = [contato 
+                                      for contato in lista_contatos 
+                                      if contato['Atividade'] == 
+                                      atividade_procurada]
+                if resultado_pesquisa:
+                    for contato in resultado_pesquisa:
+                        print(contato)
+                else:
+                    print("Nenhum contato encontrado com essa atividade.")
+            elif escolha == 4:
+                # Retornando ao menu principal.
+                return
             else:
-                print("Contato não encontrado.")
-        elif escolha == 3:
-            atividade_procurada = input("Digite a atividade: ")
-            contatos = [c for c in lista_contatos if c['Atividade'] == atividade_procurada]
-            if contatos:
-                for contato in contatos:
-                    print(contato)
-            else:
-                print("Nenhum contato encontrado com essa atividade.")
-        elif escolha == 4:
-            return
-        else:
-            print("Opção inválida. Tente novamente.")
+                # Tratando opção inválida.
+                print("Opção inválida. Tente novamente.")
+        except ValueError:
+            # Tratando erro de valor inválido.
+            print("Entrada inválida. Por favor, insira um número.")
 
+# [EXIGÊNCIA DE CÓDIGO 5 de 8] Função para remover contatos.
 def remover_contato():
     while True:
-        id_procurado = int(input("Digite o ID do contato a ser removido: "))
-        contato = next((c for c in lista_contatos if c['id'] == id_procurado), None)
-        if contato:
-            lista_contatos.remove(contato)
-            print("Contato removido com sucesso!")
-            return
-        else:
-            print("Id inválido. Tente novamente.")
+        try:
+            id_procurado = int(input("ID do contato a ser removido: "))
+            resultado_pesquisa = next((contato for contato in lista_contatos 
+                                       if contato['id'] == id_procurado), 
+                                       None)
+            if resultado_pesquisa:
+                # Removendo o contato da lista.
+                lista_contatos.remove(resultado_pesquisa)
+                print("Contato removido com sucesso!")
+                return
+            else:
+                # Tratando ID inválido.
+                print("Id inválido. Tente novamente.")
+        except ValueError:
+            # Tratando erro de valor inválido.
+            print("Entrada inválida. Por favor, insira um número.")
 
+# Função principal com o menu de opções.
+# [EXIGÊNCIA DE CÓDIGO 6 de 8] Estrutura de menu no código principal (main).
 def main():
     global id_global
     while True:
-        print_menu_principal()
-        opcao = int(input("Escolha uma opção: "))
+        imprime_linha()
+        print("-------------BEM VINDO AO GOMES E-COMMERCE-----------")
+        imprime_linha()
+        print("----------------- MENU DE CADASTROS -----------------")
+        imprime_linha()
+        print("--------- |   1 - Cadastrar Contato       | ---------")
+        print("--------- |   2 - Consultar Contatos      | ---------")
+        print("--------- |   3 - Remover Contato         | ---------")
+        print("--------- |   4 - Encerrar Programa       | ---------")
+        imprime_linha()
+        
+        try:
+            opcao = int(input("Digite a opção desejada: "))
 
-        if opcao == 1:
-            id_global = cadastrar_contato(id_global, lista_contatos)
-        elif opcao == 2:
-            consultar_contatos()
-        elif opcao == 3:
-            remover_contato()
-        elif opcao == 4:
-            print("Encerrando o programa. Até logo!")
-            break
-        else:
-            print("Opção inválida. Tente novamente.")
+            if opcao == 1:
+                # Cadastrando um novo contato.
+                id_global = cadastrar_contato(id_global, lista_contatos)
+            elif opcao == 2:
+                # Consultando contatos.
+                consultar_contatos()
+            elif opcao == 3:
+                # Removendo um contato.
+                remover_contato()
+            elif opcao == 4:
+                # Encerrando o programa.
+                print("Encerrando o programa. Até logo!")
+                break
+            else:
+                # Tratando opção inválida.
+                print("Opção inválida. Tente novamente.")
+        except ValueError:
+            # Tratando erro de valor inválido.
+            print("Entrada inválida. Por favor, insira um número.")
 
 # Início do programa
 if __name__ == "__main__":
-    print("Bem vindos à lista de contatos do [Seu Nome Completo]")
+    print("Bem vindos à lista de contatos do Maria Eduarda Gomes")
     
-    # Exigência de Código 2 de 8
+    # [EXIGÊNCIA DE CÓDIGO 2 de 8] Inicializando a lista de contatos e o ID 
+    # global com meu número de RU.
     lista_contatos = []
-    id_global = 1234567  # Substitua pelo seu RU
+    id_global = 5129006 
 
-    # Adicionando contatos iniciais
-    lista_contatos.append({'id': 1234567, 'Nome': '[Seu Nome Completo]', 'Atividade': 'Estudante', 'Telefone': '[Seu RU]'})
-    lista_contatos.append({'id': 1234568, 'Nome': 'João Silva', 'Atividade': 'Desenvolvedor', 'Telefone': '1111-1111'})
-    lista_contatos.append({'id': 1234569, 'Nome': 'Maria Souza', 'Atividade': 'Desenvolvedor', 'Telefone': '2222-2222'})
+    # [EXIGÊNCIA DE CÓDIGO 7 de 8] Adicionando contatos iniciais à lista.
+    lista_contatos.append({'id': 5129005, 
+                           'Nome': 'João Silva', 
+                           'Atividade': 'Marketing', 
+                           'Telefone': '(32)98624-4503'
+                           })
+    lista_contatos.append({'id': 5129004, 
+                           'Nome': 'Maria Souza', 
+                           'Atividade': 'Desenvolvedor', 
+                           'Telefone': '(59)94871-6423'
+                           })
 
-    # Executando o programa principal
+    # Executando o programa principal.
     main()
